@@ -917,3 +917,67 @@ console.log(fruit == fruitbear);
 console.log(fruit === fruitbear);
 fruit.name = 'grape';
 console.log(fruitbear);
+
+//Promise
+// function successCallback(result) {
+//   console.log("It succeeded with" + result);
+// }
+// function failureCallback(error) {
+//   console.log("It failed with" + error);
+// }
+// doSomething(successCallback, failureCallback);
+
+// const promise = doSomething();
+// promise.then(successCallback, failureCallback);
+
+// doSomething().then(successCallback, failureCallback);
+
+//イテレーター
+function makeRangeIterator(start = 0, end = Infinity, step = 1) {
+  var nextIndex = start;
+  var n = 0;
+  var returned = false;
+
+  var rangeIterator = {
+    next: function() {
+      var result;
+      if (nextIndex < end) {
+        result = { value: nextIndex, done: false }
+        nextIndex += step;
+        n += 1;
+      } else if (!returned) {
+        result = { value: n, done: true }
+        returned = true;
+      } else {
+        result = { done: true }
+      }
+      return result;
+    }
+  };
+  return rangeIterator;
+}
+
+var it = makeRangeIterator(1, 10, 2);
+var result = it.next();
+while (!result.done) {
+  console.log(result.value);
+  result = it.next();
+}
+console.log("Iterated over sequence of size: ", result.value );
+
+function* makeRangeIterator(start = 0, end = Infinity, step = 1) {
+  let n = 0;
+  for(let i = start; i < end; i += step) {
+    n += 1;
+    yield i;
+  }
+  return n;
+}
+
+var it = makeRangeIterator(1, 10, 2);
+var result = it.next();
+while (!result.done) {
+  console.log(result.value);
+  result = it.next();
+}
+console.log("Iterated over sequence of size: ", result.value );
