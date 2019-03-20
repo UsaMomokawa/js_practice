@@ -523,3 +523,397 @@ trees[3] = undefined;
 if(3 in trees) {
   console.log('実行される')
 }
+
+var a1 = true && true;
+var a2 = true && false;
+var a3 = false && true;
+var a4 = false && (3 == 4);
+var a5 = 'Cat' && 'Dog'; //Dog
+var a6 = false && 'Cat';
+var a7 = 'Cat' && false;
+
+var o1 = true || true;
+var o2 = false || true; //true
+var o3 = true || false;
+var o4 = false || (3 == 4);//false
+var o5 = 'Cat' || 'Dog'; //Cat
+var o6 = false || 'Cat';//Cat
+var o7 = 'Cat' || false;
+
+var n1 = !true; //false
+var n2 = !false; //true
+var n3 = !'Cat' //false
+
+var myFun = new Function('5 + 2');
+var shape = 'round';
+var size = 1;
+var foo = ['Apple', 'Mango'];
+var today = new Date();
+
+console.log(typeof myFun);
+console.log(typeof shape);
+console.log(typeof size);
+console.log(typeof foo);
+console.log(typeof today);
+
+console.log(typeof doesntExist);
+console.log(typeof true);
+console.log(typeof null);
+console.log(typeof 62);
+console.log(typeof 'Hello world');
+
+console.log(typeof Date);
+
+//void式
+//<a href="javascript:void(document.form.submit())">Click here to submit</a>
+
+//in演算子
+var trees = ['redwood', 'bay', 'cedar', 'oak', 'maple'];
+console.log(0 in trees);
+console.log(6 in trees);
+console.log('oak' in trees);
+console.log('length' in trees);
+
+//定義済みオブジェクト
+console.log('PI' in Math);
+var myString = new String('coral');
+console.log('length' in myString);
+
+//ユーザー定義オブジェクト
+var mycar = {make: 'Honda', model: 'Accord', year: 1998};
+console.log("make" in mycar);
+console.log("model" in mycar);
+
+//instanceof演算子
+var theDay = new Date(1995, 12, 17);
+if(theDay instanceof Date) {
+  //実行する文
+}
+
+//this
+function validate(obj, lowval, hival) {
+  if((obj.value < lowval) || (obj.value > hival))
+    console.log('Invalid Value!');
+}
+// <p>Enter a number between 19 and 99:</p>
+// <input type="text" name="age" size=3 onChange="validate(this, 18, 99);">
+
+//グループ化演算子
+var a = 1;
+var b = 2;
+var c = 3;
+console.log(a + b * c);
+console.log((a + b) * c);
+
+//new演算子 => インスタンスを作成
+var hoge = new String();
+
+//super演算子
+// super([引数]);
+// super.親の関数([引数]);
+
+//展開演算子 => 展開して配置
+var parts = ['shoulder', 'knees'];
+var lyrics = ['head', ...parts, 'and', 'toes'];
+
+function f(x, y, z) {}
+var args = [0, 1, 2];
+f(...args)
+
+//10進数
+1234567
+//2進数
+0b000000000
+//8進数
+0755
+0o10
+//16進数
+0xFFFFFFFFFFFFF
+0x123456789ABCDEF
+0XA
+//指数表現
+1E3//1000
+2e6//2000000
+
+//Numberオブジェクト
+var biggestNum = Number.MAX_VALUE;
+var smallestNum = Number.MIN_VALUE;
+var infiniteNum = Number.POSITIVE_INFINITY;
+var negInfiniteNum = Number.NEGATIVE_INFINITY;
+var notANum = Number.NaN;
+
+//Dateオブジェクト
+var Xmas95 = new Date("December 25, 1995");
+console.log(Xmas95.getMonth());
+console.log(Xmas95.getFullYear());
+
+var today = new Date();
+var endYear = new Date(1995, 11, 31, 23, 59, 59, 999);
+endYear.setFullYear(today.getFullYear()); //todayに1995年を設定
+var msPerDay = 24 * 60 * 60 * 1000;
+
+var IPOdate = new Date();
+IPOdate.setTime(Date.parse("Aug 9, 1995"));
+
+//文字列
+var s1 = "2 + 2";//文字列リテラル
+var s2 = new String("2 + 2")//文字列オブジェクト
+console.log(eval(s1));
+console.log(eval(s2));
+
+var mystring = 'Hello World!';
+var x = mystring.length;
+console.log(mystring[0]);
+
+console.log("string text line 1\n\
+string text line 2");
+console.log(`string text line 1
+string text line 2`);
+
+var a = 5;
+var b = 10;
+console.log(`Fifteen is ${a + b} and\nnot ${2 * a + b}.`);
+
+//正規表現
+var myRe = /d(b+)d/g;//gはグローバルサーチのフラグ
+var myArray = myRe.exec("csbbdbsbz");
+console.log(myArray);
+
+var re = /(\w+)\s(\w+)/;
+var str = 'John Smith';
+var newstr = str.replace(re, '$2, $1');
+console.log(newstr);
+
+// var re = /\w+\s/g;
+var re = new RegExp('\\w+\\s', 'g');
+var str = 'fee fi fo fum';
+var myArray = str.match(re);
+console.log(myArray);
+
+//インデックス付きコレクション
+var arr = [42];//42という要素
+var arr = Array(42); //lengthが42
+
+// var arr = Array(9.3);
+// console.log(arr);
+
+var emp = [];
+emp[0] = 'Casey Jones';
+emp[1] = 'Phil Lesh';
+emp[2] = 'August West';
+
+var arr = [];
+arr[3.4] = 'Oranges';
+console.log(arr.length);//0
+console.log(arr.hasOwnProperty(3.4));//属性になる
+
+var arr = ['Wind', 'Rain', 'Fire'];
+console.log(arr[2]);
+console.log(arr['length']);
+
+//配列の反復処理
+var colors = ['red', 'green', 'blue'];
+// for(var i = 0; i < colors.length; i++) {
+//   console.log(colors[i]);
+// }
+colors.forEach(color => console.log(color));
+
+//配列のメソッド
+var myArray = new Array('1', '2', '3');
+myArray = myArray.concat('a', 'b', 'c');
+console.log(myArray);
+
+var myArray = new Array('Wind', 'Rain', 'File');
+var list = myArray.join('-');
+console.log(list);
+
+var myArray = new Array('1', '2', '3');
+myArray.push('4');
+console.log(myArray);
+
+myArray.pop();
+console.log(myArray);
+
+var first = myArray.shift();
+console.log(myArray);
+
+myArray.unshift('5', '4');
+console.log(myArray);
+
+myArray = new Array('Eat', 'An', 'Resource');
+var sortFn = function(a, b) {
+  if(a[a.length - 1] < b[b.length - 1]) return -1;
+  if(a[a.length - 1] > b[b.length - 1]) return 1;
+  if(a[a.length - 1] == b[b.length - 1]) return 0;
+}
+console.log(myArray.sort(sortFn));
+
+var a = ['a', 'b', 'c'];
+a.forEach(function(element){ console.log(element)});
+
+var a1 = ['a', 'b', 'c'];
+var a2 = a1.map(function(item) {return item.toUpperCase(); });
+console.log(a2);
+
+function isNumber(value) {
+  return typeof value === 'number';
+}
+var a1 = [1, 2, 3];
+console.log(a1.every(isNumber));
+var a2 = [1, '2', 3];
+console.log(a2.every(isNumber));
+console.log(a2.some(isNumber));
+
+var a = [10, 20, 30];
+var total = a.reduce(function(first, second) {return first + second; }, 0);
+console.log(total);//60
+
+var a = new Array(4);
+for(i = 0; i < 4; i++){
+  a[i] = new Array(4);
+  for(j = 0; j < 4; j++) {
+    a[i][j] = '[' + i + ',' + j + ']';
+  }
+}
+console.log(a);
+
+//mapオブジェクト
+var sayings = new Map();
+sayings.set('dog', 'woof');
+sayings.set('cat', 'meow');
+console.log(sayings.size);
+console.log(sayings.get('cat'));
+console.log(sayings.has('bird'));
+
+for(var[key, value] of sayings) {
+  console.log(key + 'goes' + value);
+}
+sayings.clear();
+console.log(sayings.size);
+
+//setオブジェクト
+var mySet = new Set();
+mySet.add(1);
+mySet.add('some text');
+mySet.add('foo');
+
+console.log(mySet.has(1));
+mySet.delete('foo');
+console.log(mySet.size);
+
+for(let item of mySet) console.log(item);
+
+//オブジェクト
+var myCar = new Object();
+myCar['make'] = 'Ford';
+myCar['model'] = 'Mustang';
+myCar['year'] = 1969;
+
+function showProps(obj, objname) {
+  var result = '';
+  for(var i in obj) {
+    if(obj.hasOwnProperty(i)) {
+      result += objname + '.' + i + '=' + obj[i] + '\n';
+    }
+  }
+  return result;
+}
+console.log(showProps(myCar, "myCar"));
+
+//オブジェクトの初期化
+// var obj = { property_1:   value_1,
+//             2:            value_2,
+//             'property n': value_n };
+
+function Person(name, age, sex) {
+  this.name = name;
+  this.age = age;
+  this.sex = sex;
+}
+var rand = new Person('Rand McKinnon', 33, 'M');
+var ken = new Person('Ken Jones', 39, 'M');
+console.log(rand);
+
+function Car(make, model, year, owner) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+  this.owner = owner;
+}
+var car1 = new Car('Eagle', 'Talon TSi', 1993, rand);
+console.log(car1);
+
+var Animal = {
+  type: 'Invertebrates',
+  displayType: function(){
+    console.log(this.type);
+  }
+}
+
+var fish = Object.create(Animal);
+fish.type = 'Fishes';
+fish.displayType();
+
+// var o = {
+//   a: 7,
+//   get b(){
+//     return this.a + 1;
+//   },
+//   set c(x){
+//     this.a = x / 2;
+//   }
+// };
+// console.log(o.a);
+// console.log(o.b);
+// o.c = 50;
+// console.log(o.a);
+
+var d = Date.prototype;
+Object.defineProperty(d, 'year', {
+  get: function(){ return this.getFullYear(); },
+  set: function(y) { this.setFullYear(y); }
+});
+var now = new Date();
+console.log(now.year);
+now.year = 2001;
+console.log(now);
+
+var o = {
+  a: 7,
+  get b() {return this.a + 1; },
+  set c(x) {this.a = x / 2; }
+};
+console.log(o.b);
+o.c = 50;
+console.log(o.a);
+
+var o = { a: 0 };
+Object.defineProperties(o, {
+  'b': {get: function(){return this.a + 1;}},
+  'c': {set: function(x){this.a = x / 2;}}
+});
+o.c = 10;
+console.log(o.b);
+console.log(o.a);
+
+var myobj = new Object;
+myobj.a = 5;
+myobj.b = 12;
+delete myobj.a;
+console.log('a' in myobj);
+
+g = 17;
+delete g;
+
+//比較演算子
+var fruit = {name: 'apple'};
+var fruitbear = {name: 'apple'};
+console.log(fruit == fruitbear);
+console.log(fruit === fruitbear);//同じプロパティを持っていてもfalse
+
+var fruit = {name: 'apple'};
+var fruitbear = fruit;
+console.log(fruit == fruitbear);
+console.log(fruit === fruitbear);
+fruit.name = 'grape';
+console.log(fruitbear);
