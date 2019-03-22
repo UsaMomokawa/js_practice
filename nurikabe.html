@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>ぬりかべ</title>
+    <script>
+      $(function() {
+        $('#start').click(function() {
+          $(this).hide();
+
+          //変数初期化
+          var FLEN = 16;
+          var px = 0, py= 1;
+          var pd = 1;
+          var score = 0;
+
+          //フィールドを表示
+          var field = '';
+          for(var y = 0; y < FLEN; y++) {
+            for(var x = 0; x < FLEN; x++) {
+              field += '<span id="field_' + x + '_' + y + '">';
+                if(x == 0 || x == FLEN - 1 || y == 0 || y == FLEN - 1)field += '◆';
+                else field += '◇';
+                field += '</span>';
+            }
+            field += '<br>';
+          }
+          $("#field").html(field);
+
+          //マウスを押した時に移動方向を時計周りに90度動かす
+          $(document).mousedown(function() {
+            pd = (pd + 1)% 4;
+            return false;
+          })
+
+          //100msごとに繰り返す
+          var id = setInterval(function() {
+            //移動と当たり判定
+            if(pd == 0) py++;
+              else if(pd == 1)px++;
+              else if(pd == 2)py++;
+              else px--;
+              var item = $('#field_' + px + '_' + py);
+              if(item.html() == '◇') {
+                score++;
+                $('#score').html(score);
+              } else {
+                clearInterval(id);
+                $('#start').show();
+              }
+              item.html('◆');
+          }, 100);
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="field"></div>
+    <p><a id="start" href="javascript:void(0)">スタート</a> 得点: <span id="score"></span></p>
+  </body>
+</html>

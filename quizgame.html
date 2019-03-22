@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>クイズ</title>
+    <script>
+      $(function() {
+        $('input').click(function() {
+          if($(this).val()==2) alert('正解！'); 
+          else alert('はずれ！');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>あなたの好きな食べ物は？</p>
+    <p>
+      <input type="radio" name="food" value="1">そば
+      <input type="radio" name="food" value="2">うどん
+      <input type="radio" name="food" value="3">ラーメン
+    </p>
+  </body>
+</html>
