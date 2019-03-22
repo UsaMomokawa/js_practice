@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>チェックボックスたたき</title>
+    <script>
+      $(function() {
+        $('a').click(function() {
+          var NUM = 5; //チェックボックスの数
+          var SIZE = 200; //ステージの大きさ
+          var count = 0; //現在チェックされている数
+          var st = new Date().getTime(); //開始時間
+          $('body').empty();
+
+        // チェックボックスの新しい位置を返す
+        function newPos() {
+          return {
+            left: Math.floor(Math.random() * SIZE),
+            top:  Math.floor(Math.random() * SIZE)
+          };
+        }
+
+        // チェックボックスの生成とアニメーションの生成
+        for(var i = 0; i < NUM; i++) {
+          $('<input type="checkbox">')
+          .appendTo('body')
+          .css('position', 'absolute')
+          .css(newPos())
+          .each(function() {
+            $(this).animate(newPos(), 3000, arguments.callee);
+          });
+        }
+
+        //チェックボックスが押されたときの処理
+        $('input').click(function() {
+          $(this).stop().attr('disabled', 'disabled');
+          var t = (new Date().getTime() - st) / 1000;
+          if(++count >= NUM) alert('クリア！所要時間:' + t + '秒');
+          });
+        return false;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <a href="#">素早く全てクリックするのだ〜</a>
+  </body>
+</html>

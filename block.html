@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>ブラウザ画面のブロック</title>
+    <script>
+      $(function() {
+        $('#block').click(function(){
+          $('#shim').css({
+            backgroundColor: 'black',
+            position: 'absolute',
+            display: 'block',
+            left: 0,
+            top: 0,
+            opacity: 0.5,
+            width: $(document).width(), //画面全体をおおう
+            height: $(document).height()  //画面全体をおおう
+          });
+          $(window).on('resize.shim', function() {
+            $('#shim').css({
+              width: $(document).width(),
+              height: $(document).height()
+            });
+          });
+        });
+        $('#shim').click(function() {
+          $(this).css({display: 'none'});
+          $(window).off('resize.shim');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <a href="#" id="block">ブロック！</a>
+    <div id="shim"></div>
+  </body>
+</html>
