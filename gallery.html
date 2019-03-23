@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>イメージギャラリー</title>
+    <script>
+      $(function() {
+        $('img').css({cursor: 'pointer'}).click(function() {
+          $('#load_area').html('<img src="loading.gif" alt="">'); //画像を配置
+          var html = 'b' + $(this).attr('src')[0] + '.html';
+          $('#load_area').load(html);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>
+      <img src="1.jpg" art="">
+      <img src="2.jpg" art="">
+      <img src="3.jpg" art="">
+    </p>
+    <p id="load_area"></p>
+  </body>
+</html>

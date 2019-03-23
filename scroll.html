@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>大きい画像の表示領域をマウスのドラッグで移動</title>
+    <script>
+      $(function() {
+        var DIV_W = 320;
+        var DIV_H = 240;
+        var IMG_W = 1024;
+        var IMG_H = 768;
+        var x = 0; 
+        var y = 0;
+        $('#move').css({
+          width: DIV_W,
+          height: DIV_H,
+          backgroundImage: 'url(1.jpg)'
+        }).mousedown(function(e) {
+          $(this).css('cursor', 'move');
+          var bx = e.pageX;
+          var by = e.pageY;
+          $(document).on('mousemove.move', function(e) {
+            x += bx - e.pageX;
+            bx = e.pageX;
+            if(x < 0) x = 0;
+            if(x > IMG_W - DIV_W) x = IMG_W - DIV_W;
+            y += by - e.pageY;
+            by = e.pageY;
+            if(y < 0) y = 0;
+            if(y > IMG_H - DIV_H) y = IMG_H - DIV_H;
+            $('#move').css('background-position', '-' + x + 'px -' + y + 'px');
+            return false;
+          }).one('mouseup', function() {
+            $('move').css('cursor', 'auto');
+            $(document).off('mousemove.move');
+          });
+          return false;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id ="move"></div>
+  </body>
+</html>

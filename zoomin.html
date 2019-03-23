@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>ダブルクリックで画像を拡大縮小</title>
+    <script>
+      $(function() {
+        var DIV_W = 512;
+        var DIV_H = 384;
+        var IMG_W = 1024;
+        var IMG_H = 768;
+        var zoomin = true;
+        $('div').css({width: DIV_W, height: DIV_H});
+        $('img').dblink(function(e) {
+          if(zoomin) {
+            $(this).animate({width: DIV_W, height: DIV_H, left: 0, top: 0}, 500);
+            zoomin = false;
+          } else {
+            var x = (e.pageX - $(this).offset().left) * (IMG_W / DIV_W) - DIV_W / 2;
+            if(x < 0) x = 0;
+            if(x > IMG_W - DIV_W) x = IMG_W - DIV_W;
+            var y = (e.pageY - $(this).offset().top) * (IMG_H / DIV_H) - DIV_H / 2;
+            if(y < 0) y = 0;
+            if(y > IMG_H - DIV_H) y = IMG_H - DIV_H;
+            $(this).animate({width: IMG_W, height: IMG_H, left: -x, top: -y}, 500);
+            zoomin = true;
+          }
+        });
+      });
+    </script>
+  </head>
+  <style>
+    div {
+      overflow: hidden;
+      position: relative;
+    }
+    img {
+      position: absolute;
+    }
+  </style>
+  <body>
+    <div><img src="1.jpg"></div>
+  </body>
+</html>

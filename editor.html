@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>リアルタイムプレビューつきのHTMLエディタ</title>
+    <script>
+      $(function() {
+        $('body').keyup(function() {
+          $('#preview').html($('#src').val());
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>以下にHTMLを書くと反映されるよ</p>
+    <textarea id="src" rows="10" cols="80">
+      <img src="pict.jpg">ひまわり人間
+    </textarea>
+    <hr>
+    <div id="preview"></divid>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>jQueryによるテーブルのページ送り</title>
+    <script>
+      $(function() {
+        var page = 0;
+        function draw() {
+          $('#page').html(page + 1); //現在のページ数
+          $('tr').hide(); // テーブル全体を隠す
+          $('tr:first, tr:gt(' + page * 5 +'):lt(5)').show();
+        }
+        $('#prev').click(function() {
+          if(page > 0) {
+            page--;
+            draw();
+          }
+        });
+        $('#next').click(function() {
+          if(page < ($('tr').size() - 1) / 5 - 1) {
+            page++;
+            draw();
+          }
+        });
+        draw();
+      });
+    </script>
+    <style>
+      td, th {
+        border: 1px solid black;
+        padding: 2px;
+      }
+      #prev, #next {
+        color: red;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <span id="prev"><</span> <span id="page"></span> <span id="next">></span>
+    <table>
+      <tr><th>名前</th><th>消費MP</th></tr>
+      <tr><td>メラ</td><td>2</td></tr>
+      <tr><td>メラミ</td><td>6</td></tr>
+      <tr><td>メラゾーマ</td><td>18</td></tr>
+      <tr><td>メラガイアー</td><td>45</td></tr>
+      <tr><td>ヒャド</td><td>3</td></tr>
+      <tr><td>ヒャダルコ</td><td>8</td></tr>
+      <tr><td>マヒャド</td><td>24</td></tr>
+      <tr><td>マヒャドデス</td><td>50</td></tr>
+      <tr><td>ドルマ</td><td>4</td></tr>
+      <tr><td>ドルクマ</td><td>7</td></tr>
+      <tr><td>ドルモーア</td><td>20</td></tr>
+    </table>
+  </body>
+</html>

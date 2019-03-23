@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charaset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>テキストフィールドの数値をマウスの上下移動で増減する</title>
+    <script>
+      $(function() {
+        $('#updown').mousedown(function(e) {
+          $(this).css('cursor', 'n-resize');
+          var sy = e.clientY;
+          var vy = 0;
+          var id = setInterval(function() {
+            $('#updown').val(Number($('#updown').val()) + vy);
+          }, 40);
+          $(document).on('mousemove.updown', function(e) {
+            vy = Math.floor((e.clientY - sy) / 10);
+            return false;
+          }).one('mouseup', function() {
+            $('#updown').css('cursor', 'auto');
+            $(document).off('mousemove.updown');
+            clearInterval(id);
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input id="updown" type="text" value="0" readonly="readonly">
+  </body>
+</html>
